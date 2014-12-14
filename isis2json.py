@@ -107,7 +107,7 @@ def iterIsoRecords(iso_file_name, isis_json_type):
         yield fields
     iso.close()
 
-def writeJsonArray(iterRecords, file_name, output, qty, skip, id_tag,
+def writeJsonArray(input_gen, file_name, output, qty, skip, id_tag,
                    gen_uuid, mongo, mfn, isis_json_type, prefix, constant):
     start = skip
     end = start + qty
@@ -118,7 +118,7 @@ def writeJsonArray(iterRecords, file_name, output, qty, skip, id_tag,
         ids = set()
     else:
         id_tag = ''
-    for i, record in enumerate(iterRecords(file_name, isis_json_type)):
+    for i, record in enumerate(input_gen):
         if i >= end:
             break
         if i > start and not mongo:
@@ -228,15 +228,16 @@ if __name__ == '__main__':
     # parse the command line
     args = parser.parse_args()
     if args.file_name.lower().endswith('.mst'):
-        iterRecords = iterMstRecords
+        input_gen_func = iterMstRecords
     else:
         if args.mfn:
             print('UNSUPORTED: -n/--mfn option only available for .mst input.')
             raise SystemExit
-        iterRecords = iterIsoRecords
+        input_gen_func = iterIsoRecords
+    input_gen = input_gen_func(args.file_name, args.type)
     if args.couch:
         args.out.write('{ "docs" : ')
-    writeJsonArray(iterRecords, args.file_name, args.out, args.qty, args.skip,
+    writeJsonArray(input_gen, args.file_name, args.out, args.qty, args.skip,
         args.id, args.uuid, args.mongo, args.mfn, args.type, args.prefix, args.constant)
     if args.couch:
         args.out.write('}\n')
