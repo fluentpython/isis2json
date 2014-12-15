@@ -7,10 +7,10 @@ or ISO-2709 databases to JSON files, optionally compatible with CouchDB
 and MongoDB.
 
 Running under Jython, both MST+XRF and ISO-2709 files can be read,
-thanks to the Bruma Java library found in the lib/ directory.
+thanks to the Bruma Java library from BIREME, bundled in the lib/ directory.
 Running under Python, only ISO-2709 files can be read.
 
-A full description of how this script is used can be found in 
+A full description of how this script is used can be found in the paper 
 `From ISIS to CouchDB: Databases and Data Models for Bibliographic Records`__.
 
 __ http://journal.code4lib.org/articles/4893
@@ -200,10 +200,9 @@ type::
   $ jython --version
   Jython 2.2.1 on java1.6.0_20
 
-To fix, download and install Jython 2.5 or later from the Jython project
-on SourceForge_.
+To fix, download and install Jython 2.5 or later from Jython.org_.
 
-.. _SourceForge: http://sourceforge.net/projects/jython/files/jython/
+.. _Jython.org: http://www.jython.org/downloads.html
 
 IMPORT ERROR: Jython 2.5 and Bruma.jar are required to read .mst files
 -----------------------------------------------------------------------
