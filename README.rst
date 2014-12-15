@@ -11,7 +11,7 @@ thanks to the Bruma Java library found in the lib/ directory.
 Running under Python, only ISO-2709 files can be read.
 
 A full description of how this script is used can be found in 
-`From ISIS to CouchDB: Databases and Data Models for Bibliographic Records`__
+`From ISIS to CouchDB: Databases and Data Models for Bibliographic Records`__.
 
 __ http://journal.code4lib.org/articles/4893
 
